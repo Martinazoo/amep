@@ -1,0 +1,115 @@
+
+
+body {
+  background-color: var(--dark-blue);
+}
+
+.error{
+  color: rgb(255, 81, 81);
+  text-align: center;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Assegura que l'alçada de l'element sigui 100% de la pantalla */
+  width: 100vw; /* Assegura que l'amplada de l'element sigui 100% de la pantalla */
+}
+
+.form {
+  justify-content: center;
+  background-color: var(--almost-white);
+  padding: 20px 100px 100px 100px;
+  border-radius: 12px;
+}
+
+.formField {
+  width: 100%;
+  background-color: var(--light-gray);
+  border: none;
+  border: 2px solid var(--dark-blue);
+  border-radius: 12px;
+  padding: 11px;
+  margin-top: 5px;
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+.row {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.swarviceImage {
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.label {
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.submitButton {
+  background-color: var(--dark-blue);
+  padding: 15px;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 12px;
+  color: #f0ecec;
+  border: none;
+  transition: ease 100ms;
+  font-size: 16px;
+}
+
+.submitButton:hover {
+  background-color: var(--gray-blue);
+  transition: ease 100ms;
+  cursor: pointer;
+}
+
+.cancelButton {
+  background-color: var(--dark-blue-mid-opp);
+  padding: 15px;
+  width: 100%;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 12px;
+  color: var(--almost-white);
+  border: none;
+  transition: ease 100ms;
+  font-size: 16px;
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: var(--dark-blue-less-opp);
+  transition: ease 100ms;
+  cursor: pointer;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between; /* Espai màxim entre els elements */
+  margin-top: 10px;
+  flex-direction: row; /* Organitza els elements horitzontalment */
+}
+
+.bot_cancel {
+  width: 40%;
+  text-align: center;
+}
+
+.bot_reg {
+  width: 45%;
+}

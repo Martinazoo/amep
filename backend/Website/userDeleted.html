@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pallette.css">
+    <link rel="stylesheet" href="css/deleteNeighbor.css">
+
+    <title>Swarvice</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" onsubmit="saveData()">
+            <img src="img/swarvice.png" id="swarvice" style="width: 150px; height: 150px;">
+            <br> <br>
+            <label style="font-size: 40px;" >Delete your user</label>
+            <br> <br>
+            <label style="font-size: medium;">Your user has been deleted</label><br>
+            <br>
+            <input type="button" value="Ok" onclick="redirect_to_login()"><br>
+            
+        </form> 
+    </div>
+
+    <script>
+        function redirect_to_login(){
+            //Savedata()
+            window.location.href = "login.html"; //create userDeleted
+        }
+    </script>
+</body>
+</html>

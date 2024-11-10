@@ -1,0 +1,17 @@
+/* CollaborationList.css */
+.collaboration-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .service-item {
+    padding: 10px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+
+  

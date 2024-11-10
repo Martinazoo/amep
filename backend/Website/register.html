@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pallette.css">
+    <link rel="stylesheet" href="css/register.css">
+
+    <title>Registre - Swarvice</title>
+    
+</head>
+<body>
+   
+    <div class="container">
+        
+        <form method="post" onsubmit="saveData(event)">
+            <br><br><br>
+            <label style="font-size: 40px;" >Registre</label>
+            <br> <br>
+            <label style="font-size: medium;">DNI</label>
+                <input class="formField" type="text" name="dni" placeholder="DNI"><br>
+            <br>
+            <label style="font-size: medium;">Correu electrònic</label>
+                <input class="formField" type="email" name="correu" placeholder="Correu electrònic"><br>
+            <br>
+            <label style="font-size: medium;">Nom complet</label>
+                <input class="formField" type="text" name="nom_complet" placeholder="Nom complet"><br>
+            <br>
+            <label style="font-size: medium;">Nom d'usuari</label>
+                <input class="formField" type="text" name="usuari" placeholder="Nom d'usuari"><br>
+            <br>
+            <label style="font-size: medium;">Contrasenya</label>
+                <input class="formField" type="password" name="contrasenya" placeholder="Contrasenya"><br><br>
+            <div class = "options"> 
+                <div class="bot_cancel" onclick="cancelar()">
+                    <input type="button" value="Cancelar">
+                </div>
+                <div class="bot_reg">
+                    <input type="submit" value="Registrar"> <!-- Canviat el text del botó a "Registrar" -->
+
+                </div>
+            </div>
+            
+
+            <div class="row">
+                <a style="padding: 12px;">Ja estàs registrat?</a><a href="login.html" style="padding: 12px;">Inicia sessió aquí</a> <!-- Canviat el text de l'enllaç i la referència -->
+            </div>
+        </form> 
+    </div>
+
+    <script>
+        async function saveData(event){
+            // Aquí pots afegir el codi JavaScript per guardar les dades del formulari
+            
+            // test dades de l'event (a l'event es guarda per defecte tot el que hi ha al form)
+            let body = {
+                dni: event.target[0].value,
+                mail: event.target[1].value,
+                name: event.target[2].value,
+                username: event.target[3].value,
+                password: event.target[4].value,
+            };
+            console.log(body);
+            // preventDefault() es posa per que no es torni a carregar la pagina 
+            event.preventDefault();
+            let res = await fetch("registerNeighbor", {
+                method: "POST",
+                body: JSON.stringify(body),
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            let data = await res.json();
+            if (res.ok) {
+                document.cookie = "username = " + body["username"] + ";";
+                document.cookie = "password = " + body["password"] + ";";
+                window.location.href = "./consultCommunities.html";
+            }
+        }
+
+        function cancelar(){
+            window.location.href = "login.html";
+        }
+    </script>
+</body>
+</html>

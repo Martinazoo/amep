@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/8a5699eb44.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/services.css">
+    <link rel="stylesheet" href="/css/pallette.css">
+
+    <title>Swarvice</title>
+</head>
+<body>
+    <nav>
+        <a>General</a>
+        <ul>
+            <a href="./services">
+            <li id = "serveis">
+                <i class="fa-solid fa-door-open"></i>Serveis
+            </li>
+            </a>
+            <li id = "veins" >
+                <i class="fa-solid fa-users"></i>Veïns 
+            </li>
+            <li id = "tasques">
+                <i class="fa-solid fa-clipboard-list"></i>Tasques
+            </li>
+            <a href="./admin">
+            <li id = "administrador" class="active">
+                <i class="fa-solid fa-screwdriver-wrench"></i>Administrador
+            </li>
+            </a>
+        </ul>
+    </nav> 
+    <div class="container">
+        <div class="top">
+        <ul class="searcher">
+            <li>
+                <input type="text" id="searchInput" placeholder="Buscar...">
+            </li>
+            <li class="search" onclick= "search()">
+                <i class="fa-solid fa-search"></i>
+            </li>
+            <li class = "publishService">
+                <a href="publishService"> <i class="fa-solid fa-plus"></i></a>
+            </li>
+        </ul>
+        <ul class="profile">
+            <li>
+                <p id="Neighbor" >Nom
+                    
+                </p>
+            </li>
+            <li>
+                <p id="Tokens">Token</p>
+            </li>
+            <li>
+                <i class="fas fa-door-open" onclick="logout()"></i>
+
+            </li>
+        </ul>
+    </div>
+
+        <div id="pendingServices" class="content">
+            <div class="row">
+                <h1 id = "title_serveis"> SERVEIS PENDENTS </h1>
+            </div>
+           
+        </div>
+
+    </div>   
+    <script src="/js/cookies.js"></script>
+
+<script>
+    
+    var user = {};
+    user["username"] = getCookie("username");
+    user["password"] = getCookie("password");
+
+    //CHECK IF WE ARE ON A VALID COMMUNITY
+    //...
+
+    //CHECK JUST IF WE SELECTED A COMMUNITY
+    var community = getCookie("community");
+    if (community == "")
+        location.href = "./consultCommunities.html";
+
+    //VALIDATE THE LOGGED NEIGHBOR
+    fetch("/loginvalidation.json", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(user)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.validation){
+            document.getElementById("Neighbor").innerHTML = user.username;
+            document.getElementById("Tokens").innerHTML = data.tokens;
+        } else {
+            window.location.href = "./";
+
+        }
+    });
+
+
+    //VALIDATE THE ADMIN
+    var body = {};
+    body["community"] = community;
+    body["username"] = getCookie("username");   
+    console.log("Hola comunitat",body["community"]);
+    console.log("Hola usuari",body["username"]);
+    fetch('/ValidateAdmin.js',{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.validation) {
+            console.log("ETS LADMIN");
+        } else {
+            console.log(data.error);
+        }
+    });
+    
+    
+    fetch('/ConsultPendingServices.json',{
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body)
+    })
+    .then(response => response.json())
+    .then(data => {
+        var element = document.getElementById("pendingServices");
+        element.innerHTML = "";
+        data.serveis.forEach(service => {
+            element.innerHTML += "<div class=\"box\">" +
+            "<a style=\"font-weight: 700\">"+ service.label + "</a>" + "<br>" +
+            service.description + "<br>" +
+            service.price + 
+            "</div>";
+        });
+    });
+
+
+
+</script>
+</body>
+</html>

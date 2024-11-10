@@ -1,0 +1,42 @@
+/* Profile.module.css */
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 20px; /* Espai entre elements */
+    padding: 10px;
+    background-color: var(--content-background-color); /* Canvia aquest color segons la teva paleta */
+    border-radius: 5px;
+  }
+  
+  .userInfo, .userTokens {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espai entre icona i text */
+  }
+  
+  .logoutButton {
+    display: flex;
+    align-items: center;
+    gap: 5px; /* Espai entre icona i text */
+    background-color: var(--dark-blue);
+    color: var(--almost-white);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+  
+  .logoutButton:hover {
+    background-color: var(--gray-blue);
+  }
+  
+  .icon {
+    font-size: 20px;
+  }
+
+.icon:hover {
+    color: var(--dark-blue);
+    cursor:pointer
+}
+  

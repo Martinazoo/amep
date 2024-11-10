@@ -1,0 +1,23 @@
+/* CommunityList.module.css */
+.communities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--background-color); /* Defineix el color de fons segons la teva paleta */
+    width: 100%;
+    height: 100%;
+    overflow-x: visible;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    padding-right: 40px;
+  }
+  
+  .row {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+    
+  }
+  

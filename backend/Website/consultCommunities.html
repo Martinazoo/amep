@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/8a5699eb44.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pallette.css">
+    <link rel="stylesheet" href="css/consultCommunities.css">
+
+    <title>Swarvice</title>
+</head>
+<body>
+    <nav>
+        <a>General</a>
+        <ul>
+            <li id = "lesTevesCom" onclick= "li_lesTevesComunitats()" class="active">
+                <i class="fa-solid fa-users"></i>Les teves Comunitats
+            </li>
+            <li id = "crearCom" onclick= "li_crearComunitat()">
+                <i class="fa-solid fa-door-open"></i>Crear Comunitat
+            </li>
+        </ul>
+    </nav> 
+    <div class="container">
+        <div class="top">
+            <ul class="profile">
+                <li>
+                    <p id="Neighbor" >Nom
+                        
+                    </p>
+                </li>
+                <li>
+                    <p id="Tokens">Token</p>
+                </li>
+                <li>
+                    <i class="fas fa-door-open" onclick="logout()"></i>
+
+                </li>
+            </ul>
+        </div>
+        
+        <h1 id = "title_communities"> LES TEVES COMUNITATS:</h1>
+        <div id="communities" class="communities">
+            <div class="row">
+
+            </div>
+        </div>
+    </div>   
+    <script src="js/cookies.js"></script>
+    <script>
+        function li_lesTevesComunitats() {
+            document.getElementById("crearCom").classList.remove("active");
+            document.getElementById("lesTevesCom").classList.add("active");
+
+            //Redirigir a la pagina de veins -> window.location.href = "";
+        }
+        function li_crearComunitat() {
+            document.getElementById("crearCom").classList.add("active");
+            document.getElementById("lesTevesCom").classList.remove("active");
+            window.location.href = "./createCommunity.html"
+
+        }
+
+        var dataJSON = {};
+        dataJSON["username"] = getCookie("username");
+        
+        //CONSULT THE COMMUNITIES YOU ARE IN
+        fetch('ConsultCommunities.json', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dataJSON)
+        })
+        .then(response => response.json())
+        .then(data => {
+            var element = document.getElementById("communities");
+            element.innerHTML = "";
+            var delay = 0;
+            let i = 0;
+            
+            data.communities.forEach(community => {
+                const communityName = String(community.name);
+                const communityDescription = String(community.description);
+
+                element.innerHTML += `<div class="community" data-name="${communityName}">
+                                        <a class="title">${communityName}</a>
+                                        <button class="delete-button">Delete</button>
+                                        <hr>
+                                        <a>${communityDescription}</a>
+                                    </div>`;
+
+                var c = element.getElementsByClassName("community");
+                c[c.length - 1].style["animation-delay"] = delay + "s";
+                delay += 0.15;
+            });
+
+            const deleteButtons = element.querySelectorAll(".delete-button");
+            deleteButtons.forEach((button, index) => {
+                button.addEventListener("click", function() {
+                    const communityName = String(data.communities[index].name);
+                    const confirmation = confirm("Estàs segur de que vols esborrar permanentment la comunitat? No hi ha marxa enrere.");
+                    if (confirmation) {
+                        console.log("Deleting community:", communityName); 
+                        deleteCommunityClicked(communityName, button);
+                    } else {
+                        console.log("Operació cancel·lada");
+                    }
+                });
+            });
+              
+            });
+            
+        function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function communityClicked(name){
+        console.log(name);
+    }
+
+    function deleteCommunityClicked(communityName, button) {
+        console.log("Sending community name to backend:", communityName);  // Log the community name
+
+        fetch("deleteCommunity", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: communityName, username: getCookie("username") })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                console.log("Delete response:", data.message);
+                button.parentNode.remove();
+                alert(data.message);
+            } else {
+                console.error("Error deleting community:", data.message);
+                alert("Error: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Error deleting community:", error);
+            alert("Error: No ets l'administrador de la comunitat, la comunitat no s'esborrarà.");
+        });
+}
+
+        function sleep(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
+
+        function logout(){
+            setCookie("username", "", -1)
+            setCookie("password", "", -1)
+            window.location.href = "./"
+        }
+
+        var user = {};
+        user["username"] = getCookie("username");
+        user["password"] = getCookie("password");
+
+        fetch("loginvalidation.json", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(user)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.validation){
+                        document.getElementById("Neighbor").innerHTML = user.username;
+                        document.getElementById("Tokens").innerHTML = data.tokens;
+                    } else {
+                        window.location.href = "./";
+
+                    }
+                });
+    </script>
+
+</body>
+</html>

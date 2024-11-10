@@ -1,0 +1,85 @@
+/* ServeiForm.css */
+
+.serveiForm {
+    justify-content: center;
+    background-color: var(--light-gray);
+    padding: 10px 50px 50px 50px;
+    border-radius: 12px;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  
+  .serveiForm label {
+    width: 150px;
+    text-align: left; /* Alinea els labels a l'esquerra */
+    margin-right: 20px;
+  }
+  
+  .serveiForm input[type="text"], 
+  .serveiForm input[type="number"], 
+  .serveiForm input[type="time"], 
+  .serveiForm select {
+    border: none;
+    border: 2px solid var(--mid-gray);
+    border-radius: 12px;
+    padding: 11px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+    width: 100%;
+    background-color: white; /* Fons blanc per a les entrades i el desplegable */
+  }
+  
+  .serveiForm select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path fill="gray" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+    background-size: 20px;
+    padding-right: 40px; /* Espai extra per a la fletxa del desplegable */
+  }
+  
+  .serveiForm .input-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .serveiForm .options {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .serveiForm .bot_cancel button, 
+  .serveiForm .bot_reg button {
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 12px;
+    border: none;
+    transition: ease 100ms;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  /* Botó Cancelar */
+  .serveiForm .bot_cancel .cancel-button {
+    background-color: #ff6666; /* Canvia aquest color per modificar el color del botó Cancelar */
+  }
+  
+  .serveiForm .bot_cancel .cancel-button:hover {
+    background-color: #ff4d4d; /* Canvia aquest color per modificar el color del botó Cancelar en hover */
+  }
+  
+  /* Botó Publicar */
+  .serveiForm .bot_reg .submit-button {
+    background-color: #4CAF50; /* Canvia aquest color per modificar el color del botó Publicar */
+  }
+  
+  .serveiForm .bot_reg .submit-button:hover {
+    background-color: #45a049; /* Canvia aquest color per modificar el color del botó Publicar en hover */
+  }
+  

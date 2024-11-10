@@ -1,0 +1,15 @@
+:root {
+    --almost-white: #fcfcfc;
+    --light-gray: #f0f0f0;
+    --dark-blue:#07353D;
+    --gray-blue:#264a53;
+    --light-blue:#7ba7b3;
+
+
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat.ttf");
+}
+

@@ -1,0 +1,138 @@
+/* Pagina.css */
+
+/* Estils existents */
+.page-container {
+  display: flex;
+  background-color: #ffffff; /* Canvia aquesta variable pel color desitjat */
+}
+
+.content-container {
+  margin-left: 20px; /* Marge igual a l'ample de la barra de navegació */
+  padding: 20px;
+  flex: 1;
+  position: relative;
+  background-color: var(--content-background-color); /* Color de fons del contenidor de contingut */
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto; /* Permet scroll vertical */
+  overflow-x: hidden; /* Desactiva scroll horitzontal */
+}
+
+#title_communities {
+  margin-top: 0;
+}
+
+.profile {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+}
+
+.community-list {
+  margin-top: 60px; /* Assegura que la llista comenci sota el títol */
+  padding-bottom: 20px; /* Espai al final de la llista */
+}
+
+.plus-icon {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background-color: white; /* Color del cercle */
+  color: black; /* Color de la icona */
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 24px; /* Assegura't que la icona sigui visible */
+  width: 50px; /* Amplada del cercle */
+  height: 50px; /* Alçada del cercle */
+}
+
+.plus-icon:hover {
+  background-color: #f0f0f0; /* Canvia el color segons sigui necessari */
+}
+
+.delete-icon {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background-color: #ff4d4d; /* Color vermellós del botó */
+  color: white; /* Color de la icona i el text */
+  border-radius: 25px; /* Fer les cantonades arrodonides */
+  padding: 10px 20px; /* Espaiat intern del botó */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  font-size: 16px; /* Mida del text */
+}
+
+.delete-icon:hover {
+  background-color: #ff1a1a; /* Color del botó quan es fa hover */
+}
+
+.delete-icon .icon {
+  margin-right: 10px; /* Espai entre la icona i el text */
+  font-size: 20px; /* Assegura't que la icona sigui visible */
+}
+
+/* Nous estils específics per a Colaboracio */
+.colaboracio-page-container {
+  display: flex;
+  background-color: #ffffff; /* Canvia aquesta variable pel color desitjat */
+  overflow-x: hidden; /* Desactiva scroll horitzontal */
+}
+
+.colaboracio-content-container {
+  margin-left: 20px; /* Marge igual a l'ample de la barra de navegació */
+  padding: 20px;
+  flex: 1;
+  position: relative;
+  background-color: var(--content-background-color); /* Color de fons del contenidor de contingut */
+  height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto; /* Permet scroll vertical */
+  overflow-x: hidden; /* Desactiva scroll horitzontal */
+}
+
+#colaboracio-title_communities {
+  margin-top: 0;
+}
+
+.colaboracio-services-container {
+  display: flex;
+  flex-direction: column; /* Fa que els elements es mostrin verticalment */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.colaboracio-services-list {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.colaboracio-services-list:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  
+}
+
+.container-serveis{
+  
+  width: 100%;
+}
+
+.colaboracio-services-list h2 {
+  margin-bottom: 15px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}

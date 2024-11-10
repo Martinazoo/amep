@@ -1,0 +1,79 @@
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat.ttf");
+    
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+}
+
+@import url("pallette.css");
+body{
+    background-color: var(--dark-blue);
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+}
+
+form{
+    margin-top: 10vh;
+    justify-content: center;
+    background-color: var(--almost-white); /* --light-grey */
+    padding: 20px 100px 100px 100px;
+    border-radius: 12px;
+    
+}
+
+
+
+.row{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+form img#swarvice{
+    width: 50%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label{
+    font-size: 28px;
+    font-weight: 500;
+}
+
+
+input[type=button]{
+    background-color:var(--dark-blue);
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 12px;
+    color:#f0ecec;
+    border:none;
+    transition: ease 100ms;
+    font-size: 16px;
+}
+
+input[type=button]:hover{
+    background-color: var(--gray-blue);
+    transition: ease 100ms;
+    cursor: pointer;
+}
+
+:root {
+    --almost-white: #fcfcfc;
+    --light-gray: #f0f0f0;
+    --dark-blue:#07353D;
+    --gray-blue:#264a53;
+    --light-blue:#7ba7b3;
+}

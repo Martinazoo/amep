@@ -1,0 +1,47 @@
+/* CommunityItem.module.css */
+.community {
+    padding: 20px;
+    margin: 10px 0; /* Separació vertical entre les caixes */
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #7BA7B3;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Lleugera ombra per donar profunditat */
+    cursor: pointer;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .community:hover {
+    transform: scale(1.01); /* Lleuger augment en passar el cursor */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Augmenta l'ombra en passar el cursor */
+    background-color: #07353D;
+}
+  
+.community:hover .communityTitle,
+.community:hover .communityDescription {
+  color: #ffffff; /* Canvia el color del text en passar el cursor */
+}
+  .communityTitle {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  
+  .communityHr {
+    border: 0;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+  }
+  
+  .communityDescription {
+    display: block;
+    font-size: 1em;
+    color: #252525;
+    text-decoration: none;
+  }
+  

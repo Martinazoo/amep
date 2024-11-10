@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pallette.css">
+    <link rel="stylesheet" href="css/login.css">
+
+    <title>Swarvice</title>
+</head>
+<body>
+    <div class="container">
+        <form id="login">
+            <img src="img/swarvice.png" id="swarvice" style="width: 150px; height: 150px;">
+            <br> <br>
+            <label style="font-size: 40px;" >Login</label>
+            <br> <br>
+            <label style="font-size: medium;">Usuari</label>
+            <input type="text" name="username" placeholder="Username" required><br>
+            <br>
+            <br>
+            <label style="font-size: medium;">Constrasenya</label>
+            <input type="password" name="password" placeholder="Password" required><br><br>
+            <input type="submit" value="Login">  <!--input type = submit-->
+            <div class="row">
+                <a style="padding: 12px;">No estàs registrat?</a>
+                <a href="register" style="padding: 12px;">Registra't aquí</a>
+            </div>
+            
+        </form> 
+    </div>
+
+    <script>
+        document.getElementById("login").addEventListener("submit", function(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+
+            const formDataObject = {};
+            formData.forEach((value, key) => {
+                formDataObject[key] = value;
+            });
+            const formDataJson = JSON.stringify(formDataObject);
+            fetch("loginvalidation.json", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: formDataJson
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.validation){
+                    document.cookie = "username = " + formDataObject.username + ";";
+                    document.cookie = "password = " + formDataObject.password + ";";
+                    console.log(document.cookie);
+                    window.location.href = "./consultCommunities.html";
+
+                }
+            });           
+        });
+
+    </script>
+</body>
+</html>

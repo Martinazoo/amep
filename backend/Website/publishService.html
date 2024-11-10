@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/8a5699eb44.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pallette.css">
+    <link rel="stylesheet" href="css/publishService.css">
+
+    <title>PublicarServei - Swarvice</title>
+    
+</head>
+<body>
+    <nav>
+        <a>General</a>
+        <ul>
+            <li id= "serveis" onclick= "li_serveis()" class="active">
+                <i class="fa-solid fa-door-open"></i>Serveis
+            </li>
+            <li id= "veins" onclick= "li_veins()" >
+                <i class="fa-solid fa-users"></i>Veïns 
+            </li>
+            <li id= "tasques" onclick= "li_tasques()">
+                <i class="fa-solid fa-clipboard-list"></i>Tasques
+            </li>
+            <li id= "administrador" onclick= "li_administrador()">
+                <i class="fa-solid fa-screwdriver-wrench"></i>Administrador
+            </li>
+            <li id= "collaboracio" onclick= "li_collaboracio()">
+                <i class="fa-solid fa-handshake-simple"></i>Col·laboració
+            </li>
+        </ul>
+        <hr>
+    </nav>
+    <div class="container">
+        <div class="searcher">
+            <input type="text" placeholder="Buscar...">
+            <div class="search">
+                <i class="fa-solid fa-search"></i>
+            </div>
+            <div class = "viewServices" onclick="cancelar()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </div>
+        </div>
+
+
+
+        <form id="serveiForm" method="post" action="/sendData" onsubmit="saveData(event)">
+            <br><br>
+            <label style="font-size: 40px;">Publicar Servei</label>
+            <br> <br><br>
+            <div class="input-container">
+                <label style="font-size: medium;">Nom del Servei</label>
+                <input type="text_f" name="Nom_del_Servei" placeholder="Nom del Servei">
+            </div>
+            <br>
+            <div class="input-container">
+                <label>Descripció</label>
+                <input type="text_f" name="descripcio" placeholder="Descripció">
+            </div>
+            <br>
+            <div class="input-container">
+                <label style="font-size: medium;">Preu</label>
+                <input type="number" name="preu" placeholder="Preu">
+            </div>
+            <br>
+            <div class="input-container">
+                <label style="font-size: medium;">Durada</label>
+                <input type="time" name="durada" placeholder="Durada">
+            </div>
+            <br><br>
+            <div class="options"> 
+                <div class="bot_cancel">
+                    <button onclick="cancelar()">Cancelar</button>
+                </div>
+                <div class="bot_reg">
+                    <!--<input type="submit" value="Publicar"> -->
+                    <button onclick="Publicar()">Publicar</button> 
+                </div>
+            </div>
+        </form>
+
+    </div> 
+
+
+
+<script>
+        function li_serveis() {
+            document.getElementById("serveis").classList.add("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.remove("active");
+            
+            window.location.href = "index";
+        }
+
+        function li_veins() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.add("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.remove("active");
+
+            //Redirigir a la pagina de veins -> window.location.href = "";
+        }
+
+        function li_tasques() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.add("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.remove("active"); 
+            
+            //Redirigir a la pagina de tasques -> window.location.href = "";
+        }
+
+        function li_administrador() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.add("active");
+            document.getElementById("collaboracio").classList.remove("active");  
+
+            //Redirigir a la pagina de l'administrador -> window.location.href = "";
+        }
+
+        function li_collaboracio() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.add("active"); 
+
+            //Redirigir a la pagina de col·laboració -> window.location.href = "";
+        }
+
+
+    function saveData(event) {
+        event.preventDefault(); // Evita l'enviament del formulari per defecte
+
+        // Obté el formulari mitjançant l'ID
+        var form = document.getElementById("serveiForm");
+
+        var formData = new FormData(form);
+
+        // Converteix l'objecte en una cadena JSON
+        var nomServei = formData.get("Nom_del_Servei");
+        var plainText = "";
+        for (var pair of formData.entries()) {
+            plainText +=  pair[1] + "\n";
+        }
+        fetch('/sendData.json', {
+            method: 'POST',
+            body: plainText
+            
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Dades rebudes des del backend:', data);
+            // Pots fer alguna cosa amb la resposta del backend si és necessari
+        })
+        .catch(error => {
+            console.error('Error al enviar dades al backend:', error);
+        });
+    }
+</script>
+
+
+<script>
+    function cancelar() {
+        // Redirigir a una altra pàgina
+        window.location.href = "index";
+    }
+
+    function Publicar() {
+        window.location.href = "index";
+    }
+</script>
+
+
+</body>
+</html>

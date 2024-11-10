@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pallette.css">
+    <link rel="stylesheet" href="css/service.css">
+    <title>consultService</title>
+</head>
+<body>
+    <div class="container">
+        <div class="modal">
+            <div class="modal-content">
+                <p id="etiqueta-servei" class="service-label">Etiqueta del servei</p>
+                <h2 id="nom-servei" class="service-title">Nom del servei</h2>
+                <p class="service-price">Preu: <span id="preu-servei"></span></p>
+                <br>
+                <p class="service-description">Durada del servei: <span id="durada-servei"></span></p>
+                <br>
+                <p class="service-user">Usuari: <span id="usuari-servei"></span></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+    window.addEventListener("load", load);
+
+    async function load() {
+        // Hay que poner esto en las páginas que redirijan a un servicio
+        // Redirige al servicio con el codigo que se le pase por la variable code
+        // window.location.href = `/service.html?code=${code}`;
+        // !!!!!!!!!!!!!!!!!!!!
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get("code");
+        if (!code) window.location.href = `/index`;
+
+        // per buscar un servei fent proves: localhost:8099/service?code=1 
+        const res = await fetch(`consultService/${code}`);
+        const data = await res.json();
+        console.log(data);
+        
+        let element;
+        element = document.querySelector("#nom-servei");
+        element.innerText = data["service"]["description"];
+    
+        element = document.querySelector("#preu-servei");
+        element.innerText = data["service"]["price"];
+    
+        element = document.querySelector("#etiqueta-servei");
+        element.innerText = data["service"]["label"];
+        if (data["service"]["label"] == "Comprar") element.classList.add("service-label-variant-1");
+        else if (data["service"]["label"] == "Mascotes") element.classList.add("service-label-variant-2");
+        else if (data["service"]["label"] == "Cuinar") element.classList.add("service-label-variant-3");
+        else if (data["service"]["label"] == "Jardineria") element.classList.add("service-label-variant-4");
+        else if (data["service"]["label"] == "Netejar") element.classList.add("service-label-variant-5");
+        else element.classList.add("service-label-variant-6");
+    
+        element = document.querySelector("#durada-servei");
+        element.innerText = data["service"]["duration"];
+    
+        element = document.querySelector("#usuari-servei");
+        element.innerText = data["service"]["name"];
+    }
+</script>
+
+</html>

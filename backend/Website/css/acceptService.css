@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat.ttf");
+    
+}
+
+@import url("pallette.css");
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+}

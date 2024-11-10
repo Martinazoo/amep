@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/pallette.css">
+    <link rel="stylesheet" href="css/deleteNeighbor.css">
+
+    <title>Swarvice</title>
+</head>
+<body>
+    <div class="container">
+        <form method="post" onsubmit="saveData()">
+            <img src="img/swarvice.png" id="swarvice" style="width: 150px; height: 150px;">
+            <br> <br>
+            <label style="font-size: 40px;" >Delete your user</label>
+            <br> <br>
+            <label style="font-size: medium;">Are you completely sure?</label><br>
+            <br>
+            <input type="button" value="Yes" onclick="redirect_to_user_deleted()"><br>
+            <br><br>
+            <input type="button" value="No" onclick="redirect_to_index()"><br>
+            
+        </form> 
+    </div>
+
+    <script>
+        function redirect_to_user_deleted(){
+            //Savedata()
+            window.location.href = "userDeleted.html"; //create userDeleted
+        }
+        function redirect_to_index(){
+            //Savedata()
+            window.location.href = "index";
+        }
+    </script>
+</body>
+</html>

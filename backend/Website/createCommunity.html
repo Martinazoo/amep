@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/8a5699eb44.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/createCommunity.css">
+    <link rel="stylesheet" href="css/pallette.css">
+
+    <title>Swarvice</title>
+</head>
+<body>
+    <nav>
+        <a>General</a>
+        <ul>
+            <li id = "lesTevesCom" onclick= "li_lesTevesComunitats()" >
+                <i class="fa-solid fa-users"></i>Les teves Comunitats
+            </li>
+            <li id = "crearCom" onclick= "li_crearComunitat()" class="active">
+                <i class="fa-solid fa-door-open"></i>Crear Comunitat
+            </li>
+        </ul>
+    </nav> 
+    <div class="container">
+        <div class="top">
+            <ul class="profile">
+                <li>
+                    <p id="Neighbor" >Nom
+                        
+                    </p>
+                </li>
+                <li>
+                    <p id="Tokens">Token</p>
+                </li>
+                <li>
+                    <i class="fas fa-door-open" onclick="logout()"></i>
+
+                </li>
+            </ul>
+        </div>
+        <div class="container" style="width: 80%; max-width: 1000px;">
+            <form id="form" method="post" onsubmit="saveData(event)">
+                <br><br><br>
+                <label style="font-size: 40px;" >Crear Comunitat</label>
+                <br> <br>
+                <label style="font-size: medium;">Nom</label>
+                <input type="text" name="nom" placeholder="Nom"><br>
+                <br>
+                <label style="font-size: medium;">Descripció</label>
+                <br>
+                <textarea type="text" name="descripcio" placeholder="Descripció" style="width: 80%; max-width: 500px; height: 80%; max-height: 100px;"></textarea>
+                <br>
+                <br>
+                <div class = "options"> 
+                    <div class="bot">
+                        <input class="bot_can"type="button" value="Cancelar">
+                        <input class="bot_cre" type="submit" value="Crear" style="float: right;">
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+            </form> 
+        </div>
+    </div>   
+
+<script>
+    function li_crearComunitat() {
+        document.getElementById("crearCom").classList.add("active");
+        document.getElementById("lesTevesCom").classList.remove("active");
+    }
+
+    function li_lesTevesComunitats() {
+        document.getElementById("crearCom").classList.remove("active");
+        document.getElementById("lesTevesCom").classList.add("active");
+        window.location.href = "./consultCommunities.html"
+        //Redirigir a la pagina de veins -> window.location.href = "";
+    }
+
+    document.getElementById("form").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+        //convertir les dades del formulari en JSON
+        let body = {};
+        formData.forEach((value, key) => {
+            body[key] = value;
+        });
+        
+        //Agafar les cookies
+        var user = {};
+        user["username"] = getCookie("username");
+        if(user["username"] == "") window.href = "./"; //redirigir al login si no estas loguejat
+
+        //afegir al JSON les dades del usuari (per a poder vincular l'administrador amb la comunitat)
+        body["username"] = user["username"];
+      
+
+        fetch("createCommunity", {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(body) //convertir de JSON a string
+        })
+        /*.then(response => response.json()) DESCOMENTAR EN CAS DE RETORNAR UN JSON
+        .then(data => {*/
+        .then(() => { // eliminar aquesta linea en cas de retornar JSON
+            window.location.href = "./consultCommunities.html"; //Aqui es podrie enviar un missatge de tornada de COMUNITAT CREADA CORRECTAMENT o no
+        });
+    });
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function logout(){
+        setCookie("username", "", -1)
+        setCookie("password", "", -1)
+        window.location.href = "./"
+    }
+
+    function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path= /";
+    }
+    var user = {};
+    user["username"] = getCookie("username");
+    user["password"] = getCookie("password");
+
+    fetch("loginvalidation.json", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.validation){
+                    document.getElementById("Neighbor").innerHTML = user.username;
+                    document.getElementById("Tokens").innerHTML = data.tokens;
+                } else {
+                    window.location.href = "./";
+
+                }
+            });
+
+</script>
+
+</body>
+</html>

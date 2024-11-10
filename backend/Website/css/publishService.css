@@ -1,0 +1,331 @@
+/* Estilos ya proporcionados... */
+@font-face {
+    font-family: Montserrat;
+    src: url("../fonts/Montserrat.ttf");
+    
+}
+
+@import url("pallette.css");
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Montserrat;
+}
+
+/*28 de març proves*/
+
+
+input[type="text_f"]{
+    
+    border: none;
+    border: 2px solid var(--mid-gray);
+    border-radius: 12px;
+    padding: 11px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+input[type=text] {
+    flex: 1;
+}
+
+
+input[type=time],
+input[type=number] {
+    border: none;
+    border: 2px solid var(--mid-gray);
+    border-radius: 12px;
+    font-size: 16px;
+    padding: 11px;
+    margin-top: 5px;
+}
+
+input[type=submit]{
+    background-color:var(--dark-blue);
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 12px;
+    color:#f0ecec;
+    border:none;
+    transition: ease 100ms;
+    font-size: 16px;
+}
+
+input[type=submit]:hover{
+    background-color: var(--gray-blue);
+    transition: ease 100ms;
+    cursor: pointer;
+}
+
+.bot_cancel button {
+    background-color: var(--dark-blue-mid-opp);
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 12px;
+    color: var(--almost-white);
+    border: none;
+    transition: ease 100ms;
+    font-size: 16px;
+    position: relative;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.bot_cancel button:hover {
+    background-color: var(--dark-blue-less-opp);
+    transition: ease 100ms;
+    cursor: pointer;
+}
+
+.bot_reg button {
+    background-color: var(--dark-blue);
+    padding: 15px;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 12px;
+    color: var(--almost-white);
+    border: none;
+    transition: ease 100ms;
+    font-size: 16px;
+    position: relative;
+    text-align: center; 
+    cursor: pointer;
+}
+
+.bot_reg button:hover {
+    background-color: var(--dark-blue-less-opp);
+    transition: ease 100ms;
+    cursor: pointer;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+.input-container label {
+    width: 150px; /* Amplada fixa del label */
+    text-align: left;
+    margin-right: 20px;
+}
+
+.input-container input {
+    flex: 1; /* L'input ocupa tot l'espai disponible */
+}
+
+/* fins aqui*/
+
+
+
+body{
+    background-color: var(--almost-white);
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+
+
+
+
+nav li{
+    list-style: none;
+    font-size: 20px;
+    padding: 15px 30px;
+    border-radius: 10px;
+}
+
+nav li:hover{
+    cursor: pointer;
+    background-color:var(--gray-blue);
+    color: var(--almost-white);
+}
+
+nav ul{
+    margin: 30px 0px;
+}
+nav li.active{
+    color: var(--almost-white);
+    font-weight: 600;
+}
+
+hr{
+    color:rgb(158, 158, 158);
+}
+
+nav li i{
+    margin-right: 15px;
+    width: 24px;
+    font-size: 24px;
+    text-align: center;
+}
+
+
+nav{
+    box-sizing: border-box;
+    display: block;
+    height: 100%;
+    width: 400px;
+    color: #8b8b8b;
+    background-color: var(--dark-blue);
+    padding: 20px 30px;
+}
+
+.container{
+    box-sizing: border-box;
+    width: 100%;
+    background-color: var(--almost-white);
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.content{
+    text-align: center;
+    width: 100%;
+    display:inline-flex;
+    flex-wrap: wrap;
+    padding: 20px 40px;
+    box-sizing: border-box; 
+}
+
+.searcher{
+    box-sizing: border-box;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-direction: row;
+    padding: 20px 40px;
+}
+
+.searcher input{
+    padding: 10px 20px;
+    box-sizing: border-box;
+    width: 500px;
+    height: 40px;
+    border: 2px solid #dadada;
+    border-radius: 1000px;
+}
+
+.search{
+    border: 2px solid #dadada;
+    color: #8b8b8b;
+    box-sizing: border-box;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin-left: 5px;
+}
+
+.viewServices{
+    cursor: pointer;
+    border: 2px solid #dadada;
+    color: #160404;
+    box-sizing: border-box;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin-left: 5px;
+}
+.viewServices i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.search i{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.options {
+    display: flex;
+    justify-content: space-between; /* Espai màxim entre els elements */
+    margin-top: 10px;
+    flex-direction: row; /* Organitza els elements horitzontalment */
+}
+
+
+form{
+    
+    justify-content: center;
+    background-color: var(--light-gray); 
+    padding: 10px 50px 50px 50px;
+    border-radius: 12px;
+    
+    max-width: 500px;
+    margin: 0 auto;
+    margin-top: 50px;
+
+}
+
+input[type=Nom_del_Servei], input[type="Descripcio"], input[type="Preu"], input[type="Durada"]{
+    width: 100%;
+    background-color: var(--light-gray);
+    border: none;
+    border: 2px solid var(--dark-blue);
+    border-radius: 12px;
+    padding: 11px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+
+.row {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.nom {
+    font-size: medium;
+    padding: 5px 10px;
+    border: 2px solid var(--dark-blue-mid-opp);
+    border-radius: 5px;
+}
+
+label {
+    width: 150px;
+    text-align: right;
+    margin-right: 20px;
+}
+
+
+
+
+
+.bot_cancel {
+    width: 40%;
+    text-align: center;
+}
+
+.bot_reg {
+    width: 45%;
+}
+
+
+
+:root {
+    --almost-white: #fcfcfc;
+    --light-gray: #f0f0f0;
+    --dark-blue:#07353D;
+    --gray-blue:#264a53;
+    --light-blue:#7ba7b3;
+    --dark-blue-less-opp: #07353d75;
+    --dark-blue-mid-opp: #07353d91;
+    --mid-gray:#a5a9aa;
+}

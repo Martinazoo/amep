@@ -1,0 +1,134 @@
+.Filtrar{
+    font-size: 19px;
+    font-weight: 700;
+}
+
+
+.LabelText{
+    margin-right: 10px;
+}
+
+.NameText{
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+    border:solid 1px #888;
+    margin-right: 15px;
+}
+
+.box{
+    background-color: var(--almost-white);
+    margin-bottom: 20px;
+    margin-top: 20px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    border: 1px solid #888;
+    box-sizing:content-box;
+ 
+}
+
+.Tokens{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+}
+
+.Formulari{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+    margin-top: 10px;
+}
+
+.submit {
+    background-color: #414236;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+    margin-left: auto;
+}
+.submit:hover {
+    background-color: #888888;
+}
+
+.EtiquetaSelect{
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    align-items: center;
+    border:solid 1px #888;
+    margin-right: 10px;
+}
+
+
+.dual-range-slider {
+    position: relative;
+    width: 300px;
+  }
+  
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 5px;
+    margin: 10px 0;
+    background: #adadad;
+    border-radius: 100px;
+
+  }
+  
+  .slider__track,
+  .slider__range {
+    position: absolute;
+    height: 5px;
+    border-radius: 5px;
+  }
+  
+  .slider__range {
+    background: #007bff;
+  }
+  
+  .thumb {
+    pointer-events: none;
+    position: absolute;
+    height: 0;
+    width: 100%;
+    border: none;
+    background: none;
+    right: 0px;
+    top:-2px;
+  }
+  
+  .thumb--left {
+    pointer-events: all;
+  }
+  
+  .thumb--right {
+    pointer-events: all;
+  }
+  
+  .slider__left-value,
+  .slider__right-value {
+    position: absolute;
+    top: 10px;
+    font-size: 12px;
+  }
+  
+  .slider__left-value {
+    left: 0;
+  }
+  
+  .slider__right-value {
+    right: 0;
+  }

@@ -1,0 +1,26 @@
+.llistaserveis {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    list-style: none;
+    margin: auto;
+    width: 100%;
+    max-width: 1200px; /* Ajusta aquest valor segons les teves necessitats */
+}
+.take-button {
+    background-color: #414236;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.take-button:hover {
+    background-color: #888888;
+}

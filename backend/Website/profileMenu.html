@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://kit.fontawesome.com/8a5699eb44.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/profileMenu.css">
+    <link rel="stylesheet" href="css/pallette.css">
+
+    <title>Swarvice</title>
+</head>
+<body>
+    <nav>
+        <a>General</a>
+        <ul>
+            <li id = "serveis" onclick= "li_serveis()" class="active">
+                <i class="fa-solid fa-door-open"></i>Serveis
+            </li>
+            <li id = "veins" onclick= "li_veins()" >
+                <i class="fa-solid fa-users"></i>Veïns 
+            </li>
+            <li id = "tasques" onclick= "li_tasques()">
+                <i class="fa-solid fa-clipboard-list"></i>Tasques
+            </li>
+            <li id = "administrador" onclick= "li_administrador()">
+                <i class="fa-solid fa-screwdriver-wrench"></i>Administrador
+            </li>
+            <li id = "collaboracio" onclick= "li_collaboracio()">
+                <i class="fa-solid fa-handshake-simple"></i>Col·laboració
+            </li>
+        </ul>
+    </nav> 
+    <div class="container">
+        <div class="top">
+        <ul class="searcher">
+            
+        </ul>
+        <ul class="profile">
+            <li>
+                <p id="Neighbor" onclick="profileMenu()">Nom</p>
+            </li>
+            <li>
+                <p id="Tokens">Token</p>
+            </li>
+            <li>
+                <i class="fas fa-door-open" onclick="logout()"></i>
+
+            </li>
+        </ul>
+    </div>
+
+        <div id="print" class="content">
+            <input type="button" value="Modificar usuari" onclick=""><br> <!--S'ha de redirigir-->
+            <br><br>
+            <input type="button" value="Esborrar usuari" onclick="redirect_to_delete()"><br>
+        </div>
+
+    </div>   
+
+    <script>
+        function li_serveis() {
+            document.getElementById("serveis").classList.add("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.remove("active");
+
+            window.location.href = "index";
+        }
+
+        function li_veins() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.add("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.remove("active");
+
+            //Redirigir a la pagina de veins -> window.location.href = "";
+        }
+
+        function li_tasques() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.add("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.remove("active");     
+            
+            //Redirigir a la pagina de tasques -> window.location.href = "";
+        }
+
+        function li_administrador() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.add("active");
+            document.getElementById("collaboracio").classList.remove("active");  
+
+            //Redirigir a la pagina de l'administrador -> window.location.href = "";
+        }
+
+        function li_collaboracio() {
+            document.getElementById("serveis").classList.remove("active");
+            document.getElementById("veins").classList.remove("active");
+            document.getElementById("tasques").classList.remove("active");
+            document.getElementById("administrador").classList.remove("active");
+            document.getElementById("collaboracio").classList.add("active"); 
+
+            //Redirigir a la pagina de col·laboració -> window.location.href = "";
+        }
+
+        function profileMenu(){
+            window.location.href("profileMenu.html");
+        }
+
+
+        
+
+        function logout(){
+            setCookie("username", "", -1)
+            setCookie("password", "", -1)
+            window.location.href = "./"
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            let expires = "expires="+d.toUTCString();
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+        }
+        
+    </script>
+
+<script>
+    
+    var user = {};
+    user["username"] = getCookie("username");
+    user["password"] = getCookie("password");
+
+    fetch("loginvalidation.json", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.validation){
+                    document.getElementById("Neighbor").innerHTML = user.username;
+                    document.getElementById("Tokens").innerHTML = data.tokens;
+                } else {
+                    window.location.href = "./";
+
+                }
+            });
+    
+    function getCookie(cname) {
+        let name = cname + "=";
+        let ca = document.cookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    function redirect_to_delete(){
+        window.location.href = "deleteNeighbor";
+    }
+</script>
+</body>
+</html>
